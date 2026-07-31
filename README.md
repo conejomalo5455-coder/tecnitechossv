@@ -1,50 +1,52 @@
-# TecniTechos — Sitio Web (Demo)
+# TecniTechos — Sitio Web
 
 Sitio de una sola página para **TecniTechos**, firma salvadoreña de arquitectura, construcción y remodelación con obra que se remonta a 1989.
 
-🔗 **Demo en vivo:** https://tecnitechossv-obra-ia.vercel.app
+🔗 **En vivo:** https://tecnitechossv.vercel.app
 
-## Contenido
+## Estructura
 
-- `index.html` — sitio completo, autocontenido (HTML + CSS + JS en un solo archivo, sin dependencias de build).
-- `assets/img/` — carpeta reservada para el logo y las fotografías reales de proyectos (ver "Pendientes" abajo).
+```
+index.html            # Marcado (HTML)
+css/styles.css        # Estilos
+js/main.js            # Interacción (nav móvil, filtros, modal de proyectos)
+assets/img/           # Logo, favicons, social card e imágenes
+site.webmanifest      # Manifest PWA (íconos, colores)
+vercel.json           # Cache-Control de assets + cleanUrls
+brand/                # Master del logo (NO se despliega — ver .vercelignore)
+```
+
+Sitio estático, **sin build**. Vercel lo sirve tal cual.
 
 ## Secciones
 
-1. Hero con animación de línea de horizonte (SVG que se dibuja al cargar)
-2. El Estudio (historia de la marca desde 1989)
-3. Servicios (arquitectura, construcción, remodelación, techos, interiores, estructuras metálicas)
-4. Proyectos con filtro por categoría (residencial, comercial, industrial, institucional, techos)
-5. Proceso de trabajo en 6 pasos
-6. Testimonios
-7. Marcas y proveedores
-8. Llamado a la acción + footer con contacto real
+Hero animado · El Estudio · Servicios · Proyectos (con filtro y **modal de detalle** por caso) · Proceso · Testimonios · Marcas · CTA + footer con contacto real.
 
 ## Identidad de marca
 
-- Rojo de marca: `#F50A2E` (muestreado del logo oficial)
+- Rojo de marca: `#F50A2E`
 - Tipografías: Montserrat (títulos) + Inter (texto)
-- Tagline: "Diseñamos. Construimos. Transformamos."
+- Logo real en `assets/img/logo.png` (variante clara, para fondos oscuros) y `logo-dark.png` (para fondos claros). El favicon es el mark circular recortado del logo (`favicon-32/48`, `apple-touch-icon`, `icon-192/512`). Todo derivado de `brand/logo-original.png`.
 
-## Contacto integrado
+## Contacto
 
-- Tel/WhatsApp: 7910-0340 · 7937-5232
+- Tel/WhatsApp: 7910-0340 · 7937-5232 (WhatsApp abre en pestaña nueva)
 - Email: tecnitechos.sv@gmail.com
 
-## Pendientes
+## Imágenes
 
-- [ ] **Logo real incrustado**: esta versión usa el nombre en texto ("TECNITECHOS") en el nav y footer. Para incrustar el logo PNG real (con variante en blanco para fondos oscuros), sube el archivo del logo y se reemplaza el bloque `<span class="logo-tag">` por las etiquetas `<img>` correspondientes en base64.
-- [ ] **Fotografías reales de proyectos**: la galería usa ilustraciones vectoriales tipo blueprint como marcador de posición. Cuando estén disponibles las fotos en alta resolución de cada proyecto (Cantón El Carmen, Fábrica Protecto, Catedral Santiago de María, etc.), se reemplazan los bloques `<svg>` de `.proj-media` por `<img>`.
-
-## Despliegue
-
-El sitio está desplegado en Vercel apuntando a este repositorio. Cualquier cambio en `main` puede configurarse para desplegar automáticamente (Vercel → Project Settings → Git → conectar este repo).
+Las fotos de proyectos son de **Unsplash** como marcador de posición (imágenes de referencia). Cuando estén las fotos reales de cada obra, se reemplazan los `src` en `index.html` y los `img` del objeto `PROJECTS` en `js/main.js`.
 
 ## Desarrollo local
 
-No requiere build. Basta con abrir `index.html` en un navegador, o servirlo con cualquier servidor estático:
+No requiere build. Servir con cualquier estático:
 
 ```bash
-npx serve .
+python -m http.server 8000
 ```
-trigger rebuild: forzar redeploy desde GitHub
+
+Y abrir http://localhost:8000
+
+## Despliegue
+
+Conectado a Vercel (team ObraIA). Cada push a `main` despliega automáticamente.
