@@ -47,3 +47,4 @@ No requiere build. Basta con abrir `index.html` en un navegador, o servirlo con 
 ```bash
 npx serve .
 ```
+trigger rebuild: forzar redeploy desde GitHub
